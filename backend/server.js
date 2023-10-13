@@ -1,0 +1,13 @@
+import express from "express";
+import { PORT } from "./config/index.js";
+import connectDb from "./batabase/index.js";
+import router from "./router/index.js";
+import errorHandeler from "./middleWare/errorHandler.js";
+import cookieParser from "cookie-parser";
+const app = express();
+app.use(cookieParser());
+connectDb();
+app.use(express.json());
+app.use(router);
+app.use(errorHandeler);
+app.listen(PORT, console.log(`server is running on port:${PORT}`));
